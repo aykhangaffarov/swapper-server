@@ -17,7 +17,7 @@ import com.lab.swapper.repository.UserRepository;
 import com.lab.swapper.service.ItemService;
 import com.lab.swapper.service.UserDetailsImpl;
 
-@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/items")
 public class ItemController {
