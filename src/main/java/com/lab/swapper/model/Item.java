@@ -24,6 +24,24 @@ public class Item {
 	@NotBlank
 	private String createdAt;
 	
+	@NotBlank
+	private int warehouse;
+	
+	private FileInfo fileInfo;
+	
+	public FileInfo getFileInfo() {
+		return fileInfo;
+	}
+	public void setFileInfo(FileInfo fileInfo) {
+		this.fileInfo = fileInfo;
+	}
+	public int getWarehouse() {
+		return warehouse;
+	}
+	public void setWarehouse(int warehouse) {
+		this.warehouse = warehouse;
+	}
+
 	@DBRef
 	private User user;
 	
@@ -81,6 +99,17 @@ public class Item {
 		this.user=user;
 	}
 	
+	public Item(String name, Category category, String description, String releaseDate,
+			 String createdAt, int warehouse, User user, FileInfo fileInfo) {
+		this.name = name;
+		this.category = category;
+		this.description = description;
+		this.releaseDate = releaseDate;
+		this.createdAt = createdAt;
+		this.warehouse = warehouse;
+		this.user = user;
+		this.fileInfo=fileInfo;
+	}
 	public Item() {
 		
 	}

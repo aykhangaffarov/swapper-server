@@ -11,6 +11,8 @@ public interface ItemRepository extends MongoRepository<Item, String> {
 	
 	List<Item> findByUser(User user);
 	List<Item> findAll();
-	
-
+	List<Item> findByWarehouse(int warehouse);
+	List<Item> findByUserAndWarehouse(User user, int warehouse);
+	List<Item> findByUserNotAndWarehouse(User user, int warehouse);
+	void deleteById(String id);
 }
