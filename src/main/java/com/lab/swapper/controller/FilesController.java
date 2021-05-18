@@ -53,6 +53,13 @@ public class FilesController {
 
     return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
   }
+  
+  @GetMapping("/initanddeleteall")
+  public ResponseEntity<HttpStatus> init() {
+	storageService.deleteAll();
+	storageService.init();
+    return ResponseEntity.ok().build();
+  }
 
   @GetMapping("/files/{filename:.+}")
   @ResponseBody

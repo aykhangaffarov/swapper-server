@@ -35,6 +35,7 @@ import payload.ItemResponse;
 public class ItemController {
 	private ItemService itemService;
 	private UserRepository userRepository;
+	
 	ItemController(ItemService itemService, UserRepository userRepository) {
 		this.itemService = itemService;
 		this.userRepository=userRepository;
