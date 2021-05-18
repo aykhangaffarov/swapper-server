@@ -105,7 +105,7 @@ public class ItemController {
 	  
 	  @GetMapping("/{id}")
 	  ItemResponse findItem(@PathVariable String id) {
-			Item item=itemService.getItem(id).orElseThrow();
+			Item item=itemService.getItem(id).get();
 			return new ItemResponse(item.getId(),
 					  item.getName(),
 					  item.getCategory().getName(),
@@ -119,7 +119,7 @@ public class ItemController {
 	  
 	  @GetMapping("/userId/{id}")
 	  List<ItemResponse> findItembyUser(@PathVariable String id) {
-		  User user= userRepository.findById(id).orElseThrow();
+		  User user= userRepository.findById(id).get();
 		  List<Item> itemlist= itemService.findItemsByUser(user);
 		  List<ItemResponse> itemresponseList=new ArrayList<>();
 		  for(Item item: itemlist) {

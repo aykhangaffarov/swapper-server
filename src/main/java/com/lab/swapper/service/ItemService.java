@@ -80,8 +80,8 @@ public class ItemService {
 	}
 
 	public ItemResponse takeItem(String id, ItemResponse request) {
-		Item item=itemRepository.findById(id).orElseThrow();
-		User user= userRepository.findById(request.getUserId()).orElseThrow();
+		Item item=itemRepository.findById(id).get();
+		User user= userRepository.findById(request.getUserId()).get();
 		item.setUser(user);
 		item.setWarehouse(request.getWarehouse());
 		itemRepository.save(item);
@@ -97,7 +97,7 @@ public class ItemService {
 	}
 
 	public ItemResponse returnItem(String id) {
-		Item item=itemRepository.findById(id).orElseThrow();
+		Item item=itemRepository.findById(id).get();
 		item.setWarehouse(1);
 		itemRepository.save(item);
 		swapRequestService.deleteAllRequestsOfItem(id);

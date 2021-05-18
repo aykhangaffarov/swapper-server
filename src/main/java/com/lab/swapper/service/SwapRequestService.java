@@ -64,16 +64,16 @@ public class SwapRequestService {
 
 
 	public void performSwapRequest(String id) {
-		SwapRequest request=swapRequestRepository.findById(id).orElseThrow();
+		SwapRequest request=swapRequestRepository.findById(id).get();
 		// change user of requested item
-		Item requestedItem =itemRepository.findById(request.getRequestedItemId()).orElseThrow();
-		User swapUser=userRepository.findById(request.getSwapUserId()).orElseThrow();
+		Item requestedItem =itemRepository.findById(request.getRequestedItemId()).get();
+		User swapUser=userRepository.findById(request.getSwapUserId()).get();
 		requestedItem.setUser(swapUser);
 		itemRepository.save(requestedItem);
 		
 		// change user of swapped item
-		Item swapItem =itemRepository.findById(request.getSwapItemId()).orElseThrow();
-		User requestedUser=userRepository.findById(request.getRequestedUserId()).orElseThrow();
+		Item swapItem =itemRepository.findById(request.getSwapItemId()).get();
+		User requestedUser=userRepository.findById(request.getRequestedUserId()).get();
 		swapItem.setUser(requestedUser);
 		itemRepository.save(swapItem);
 		swapRequestRepository.deleteAllByRequestedItemId(requestedItem.getId());
